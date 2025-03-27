@@ -8,7 +8,7 @@ import { GoogleUser } from './types/google.type';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async validateUser(email: string, password: string): Promise<User | null> {
     const user = await this.prisma.user.findUnique({
@@ -134,7 +134,7 @@ export class AuthService {
       });
     }
 
-    // Remove sensitive data
+    // Return user data with tokens
     const { password: _pass, ...result } = user;
     return result;
   }
