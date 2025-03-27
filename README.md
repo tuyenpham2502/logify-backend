@@ -1,99 +1,126 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Logify
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A lightweight and efficient logging system designed to simplify tracking and debugging. Logify provides real-time log management, customizable output formats, and seamless integration into any application. Keep your logs organized, accessible, and actionable with minimal overhead.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- 🔐 **Authentication**
+  - Local authentication with email/password
+  - OAuth2 integration with GitHub
+  - OAuth2 integration with Google
+  - Session-based authentication using Redis
+  - Email verification system
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- 📝 **User Management**
+  - User registration with email verification
+  - Profile management
+  - Session management
 
-## Project setup
+## Tech Stack
 
-```bash
-$ yarn install
+- **Framework**: [NestJS](https://nestjs.com/)
+- **Database**: PostgreSQL with [Prisma](https://www.prisma.io/) ORM
+- **Session Store**: [Redis](https://redis.io/)
+- **Email Service**: [Nodemailer](https://nodemailer.com/)
+- **Authentication**: Passport.js with multiple strategies
+- **API Documentation**: Swagger/OpenAPI
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- PostgreSQL
+- Redis
+- SMTP Server (for email verification)
+
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/logify"
+
+# Redis
+REDIS_URL="redis://localhost:6379"
+
+# Session
+SESSION_SECRET="your-session-secret"
+
+# OAuth GitHub
+GITHUB_CLIENT_ID="your-github-client-id"
+GITHUB_CLIENT_SECRET="your-github-client-secret"
+GITHUB_CALLBACK_URL="http://localhost:3000/auth/github/callback"
+
+# OAuth Google
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+GOOGLE_CALLBACK_URL="http://localhost:3000/auth/google/callback"
+
+# Frontend
+FRONTEND_URL="http://localhost:3000"
+
+# Email (SMTP)
+SMTP_HOST="smtp.example.com"
+SMTP_PORT=587
+SMTP_USER="your-smtp-username"
+SMTP_PASS="your-smtp-password"
+SMTP_FROM="noreply@example.com"
 ```
 
-## Compile and run the project
+## Setup
 
+1. Install dependencies:
 ```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+yarn install
 ```
 
-## Run tests
-
+2. Set up the database:
 ```bash
-# unit tests
-$ yarn run test
+# Generate Prisma client
+yarn prisma generate
 
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+# Run migrations
+yarn prisma migrate deploy
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+3. Start the development server:
 ```bash
-$ yarn install -g mau
-$ mau deploy
+yarn start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Available Scripts
 
-## Resources
+- `yarn start:dev` - Start the application in development mode
+- `yarn start:debug` - Start the application in debug mode
+- `yarn start:prod` - Start the application in production mode
+- `yarn build` - Build the application
+- `yarn test` - Run tests
+- `yarn test:e2e` - Run end-to-end tests
+- `yarn test:cov` - Generate test coverage report
+- `yarn lint` - Run ESLint
+- `yarn format` - Format code with Prettier
 
-Check out a few resources that may come in handy when working with NestJS:
+## API Endpoints
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Authentication
 
-## Support
+- **POST** `/auth/login` - Login with email and password
+- **POST** `/auth/register` - Register a new user
+- **POST** `/auth/logout` - Logout current user
+- **GET** `/auth/check-session` - Check if user is authenticated
+- **GET** `/auth/github` - Initiate GitHub OAuth flow
+- **GET** `/auth/github/callback` - GitHub OAuth callback
+- **GET** `/auth/google` - Initiate Google OAuth flow
+- **GET** `/auth/google/callback` - Google OAuth callback
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Contributing
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is [UNLICENSED](LICENSE.md).
