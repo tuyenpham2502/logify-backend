@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email - Logify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #2d3748;
+            margin: 0 0 20px;
+            font-size: 24px;
+        }
+        p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin: 0 0 15px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #4299e1;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 20px 0;
+            transition: background-color 0.2s;
+        }
+        .button:hover {
+            background-color: #3182ce;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 12px;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{logoUrl}}" alt="Logify Logo" class="logo">
+        <h2>Verify Your Email Address</h2>
+        <p>Thanks for signing up for Logify! Please verify your email address to get started.</p>
+        <p>Click the button below to verify your email address:</p>
+        <a href="{{verificationLink}}" class="button">Verify Email Address</a>
+        <p>Or copy and paste this link into your browser:</p>
+        <p style="word-break: break-all; font-size: 14px; color: #718096;">{{verificationLink}}</p>
+        <p>This link will expire in 24 hours.</p>
+        <div class="footer">
+            <p>If you didn't create an account with Logify, you can safely ignore this email.</p>
+            <p>&copy; {{currentYear}} Logify. All rights reserved.</p>
+            <p>{{companyAddress}}</p>
+        </div>
+    </div>
+</body>
+</html>
