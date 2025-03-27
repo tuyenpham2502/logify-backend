@@ -134,7 +134,7 @@ export class AuthService {
       });
     }
 
-    // Remove sensitive data
+    // Return user data with tokens
     const { password: _pass, ...result } = user;
     return result;
   }
